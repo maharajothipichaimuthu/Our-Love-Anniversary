@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Namma First Meet 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="floating-hearts">
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+    </div>
+
+
+
+    <main class="memory-test">
+
+
+        <div class="heart">
+            🏠
+        </div>
+
+
+        <p class="small-title">
+            NAMMA FIRST MEMORY 💜
+        </p>
+
+
+        <h1>
+            Namma Mudhala Enga Meet Pannom?
+        </h1>
+
+
+        <p class="test-intro">
+
+            Seri Babe...
+            innum oru chinna memory test. 🥹💜
+
+            <br>
+
+            Namma story unmaiya start aana
+            andha place nyabagam irukka?
+
+        </p>
+
+
+
+        <div class="question-box">
+
+
+            <div class="question">
+
+
+                <label>
+                    🏠 Namma mudhala enga meet pannom?
+                </label>
+
+
+                <input
+                    type="text"
+                    id="meetAnswer"
+                    placeholder="Un answer type pannu..."
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <button onclick="checkMeet()">
+
+                Next Babe 💜
+
+            </button>
+
+
+
+            <p id="message"></p>
+
+
+        </div>
+
+
+
+        <p class="bottom-text">
+
+            Ovvoru beautiful story-kum
+            oru beginning irukkum...
+
+            <br>
+
+            adhu namma story. 💜
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* Date correct-ah enter pannirukkanum */
+
+        if (
+            sessionStorage.getItem(
+                "dateUnlocked"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "anniversary.html";
+
+        }
+
+
+
+        function checkMeet() {
+
+
+            const answer =
+                document
+                .getElementById("meetAnswer")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+            const message =
+                document
+                .getElementById("message");
+
+
+
+            if (answer === "home") {
+
+
+                message.innerHTML =
+                    "Awww... correct Babe! 🥹💜<br>" +
+                    "Unakku ellame nyabagam irukku...";
+
+
+                message.className =
+                    "success";
+
+
+
+                sessionStorage.setItem(
+                    "meetUnlocked",
+                    "true"
+                );
+
+
+
+                /*
+                    Success message
+                    3 seconds visible
+                */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "instagram.html";
+
+                    },
+                    3000
+                );
+
+
+            }
+
+            else {
+
+
+                message.innerHTML =
+                    "Hmm... adhu illa Babe 😌💜<br>" +
+                    "Konjam yosichu marubadiyum sollu...";
+
+
+                message.className =
+                    "error";
+
+
+            }
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

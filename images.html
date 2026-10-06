@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Our Memories 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           PHOTO PAGE
+        ========================= */
+
+        .photos-page {
+
+            min-height: 100vh;
+
+            padding: 45px 15px 70px;
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .photos-page .heart {
+
+            font-size: 65px;
+
+            filter:
+                drop-shadow(
+                    0 0 25px #d98cff
+                );
+
+            animation:
+                heartbeat 1.8s infinite;
+        }
+
+
+        .photos-page h1 {
+
+            font-size: 48px;
+
+            margin: 10px 0;
+
+            color: white;
+
+            text-shadow:
+                0 0 10px #d98cff,
+                0 0 25px #a855f7,
+                0 0 45px #7e22ce;
+        }
+
+
+        .photo-intro {
+
+            color: #e9d5ff;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           CAROUSEL
+        ========================= */
+
+        .carousel {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 500px;
+
+            height: 620px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            touch-action: pan-y;
+
+            user-select: none;
+
+            cursor: grab;
+        }
+
+
+        .carousel:active {
+
+            cursor: grabbing;
+        }
+
+
+        /* =========================
+           PHOTO CARD
+        ========================= */
+
+        .photo-card {
+
+            position: absolute;
+
+            width: 330px;
+
+            height: 540px;
+
+            padding: 0;
+
+            border-radius: 45px;
+
+            background: transparent;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 25px
+                rgba(205, 120, 255, 0.45),
+
+                0 25px 60px
+                rgba(0, 0, 0, 0.55);
+
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
+
+            will-change: transform;
+
+            pointer-events: none;
+        }
+
+
+        .photo-card img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            border-radius: 45px;
+
+            pointer-events: none;
+        }
+
+
+        /* Purple glow inside photo */
+
+        .photo-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 45px;
+
+            box-shadow:
+                inset 0 0 35px
+                rgba(220, 140, 255, 0.35);
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        /* Heart on photo */
+
+        .photo-card::after {
+
+            content: "💜";
+
+            position: absolute;
+
+            right: 20px;
+
+            bottom: 18px;
+
+            font-size: 28px;
+
+            filter:
+                drop-shadow(
+                    0 0 10px #d98cff
+                );
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           CARD POSITIONS
+        ========================= */
+
+        .photo-card.active {
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            opacity: 1;
+
+            z-index: 5;
+        }
+
+
+        .photo-card.behind-1 {
+
+            transform:
+                translateY(18px)
+                scale(0.94);
+
+            opacity: 0.45;
+
+            z-index: 1;
+        }
+
+
+        .photo-card.behind-2 {
+
+            transform:
+                translateY(35px)
+                scale(0.88);
+
+            opacity: 0.2;
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           PHOTO COUNTER
+        ========================= */
+
+        .photo-counter {
+
+            margin-top: 5px;
+
+            color: #e9d5ff;
+
+            font-size: 16px;
+
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 0 10px #a855f7;
+        }
+
+
+        .swipe-text {
+
+            margin-top: 10px;
+
+            color: #c4b5fd;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .photo-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+
+        .photo-btn {
+
+            padding: 12px 25px;
+
+            border: 1px solid
+                rgba(216, 180, 254, 0.4);
+
+            border-radius: 30px;
+
+            background:
+                rgba(126, 34, 206, 0.35);
+
+            color: white;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 15px
+                rgba(168, 85, 247, 0.3);
+
+            transition: 0.3s ease;
+        }
+
+
+        .photo-btn:hover {
+
+            transform: scale(1.05);
+
+            box-shadow:
+                0 0 25px
+                rgba(216, 180, 254, 0.7);
+        }
+
+
+        /* =========================
+           NEXT BUTTON
+        ========================= */
+
+        .next-button {
+
+            margin-top: 35px;
+
+            padding: 15px 40px;
+
+            border: none;
+
+            border-radius: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7e22ce,
+                    #a855f7,
+                    #7e22ce
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 18px
+                rgba(192, 132, 252, 0.6),
+
+                0 0 35px
+                rgba(126, 34, 206, 0.35);
+
+            transition: 0.3s ease;
+        }
+
+
+        .next-button:hover {
+
+            transform: scale(1.06);
+
+            box-shadow:
+                0 0 30px
+                rgba(216, 180, 254, 0.85);
+        }
+
+
+        .bottom-line {
+
+            margin-top: 25px;
+
+            color: #c4b5fd;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           HEART ANIMATION
+        ========================= */
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .photos-page {
+
+                padding-top: 35px;
+            }
+
+
+            .photos-page h1 {
+
+                font-size: 38px;
+            }
+
+
+            .photo-intro {
+
+                font-size: 15px;
+            }
+
+
+            .carousel {
+
+                height: 500px;
+            }
+
+
+            .photo-card {
+
+                width: 285px;
+
+                height: 430px;
+
+                border-radius: 38px;
+            }
+
+
+            .photo-card img {
+
+                border-radius: 38px;
+            }
+
+
+            .photo-buttons {
+
+                gap: 10px;
+            }
+
+
+            .photo-btn {
+
+                padding: 10px 18px;
+
+                font-size: 14px;
+            }
+        }
+
+
+        @media (max-width: 380px) {
+
+            .photo-card {
+
+                width: 260px;
+
+                height: 400px;
+            }
+
+
+            .carousel {
+
+                height: 465px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         FLOATING HEARTS
+    ========================= -->
+
+    <div class="floating-hearts">
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN PAGE
+    ========================= -->
+
+    <main class="photos-page">
+
+
+        <div class="heart">
+            💜
+        </div>
+
+
+        <p class="small-title">
+            OUR MEMORIES 💜
+        </p>
+
+
+        <h1>
+            Little Moments...
+        </h1>
+
+
+        <p class="photo-intro">
+
+            Every picture has a memory...
+            <br>
+
+            and every memory has you. 🥹💜
+
+        </p>
+
+
+
+        <!-- =========================
+             PHOTO CAROUSEL
+        ========================= -->
+
+        <div
+            class="carousel"
+            id="carousel"
+        >
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="photo-card active">
+
+                <img
+                    src="images/IMG_20261002_114736_897.jpg"
+                    alt="Our memory 1"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="photo-card behind-1">
+
+                <img
+                    src="images/IMG_20261002_114741_949.jpg"
+                    alt="Our memory 2"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="photo-card behind-2">
+
+                <img
+                    src="images/IMG_20261002_114745_107.jpg"
+                    alt="Our memory 3"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="images/IMG_20261002_114748_382.jpg"
+                    alt="Our memory 4"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="images/IMG_20261002_114750_425.jpg"
+                    alt="Our memory 5"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 6 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="images/IMG_20261002_114752_482.jpg"
+                    alt="Our memory 6"
+                >
+
+            </div>
+
+
+            <!-- PHOTO 7 -->
+
+            <div class="photo-card">
+
+                <img
+                    src="images/IMG_20261002_114754_464.jpg"
+                    alt="Our memory 7"
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- COUNTER -->
+
+        <div
+            class="photo-counter"
+            id="counter"
+        >
+            1 / 7 💜
+        </div>
+
+
+        <p class="swipe-text">
+            Swipe / Drag the memories 💜
+        </p>
+
+
+
+        <!-- =========================
+             PREVIOUS / NEXT
+        ========================= -->
+
+        <div class="photo-buttons">
+
+            <button
+                class="photo-btn"
+                onclick="previousPhoto()"
+            >
+                Previous 💜
+            </button>
+
+
+            <button
+                class="photo-btn"
+                onclick="nextPhoto()"
+            >
+                Next Memory 💜
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             FINAL NEXT
+        ========================= -->
+
+        <button
+            class="next-button"
+            onclick="goToCute()"
+        >
+            Next Babe 💜
+        </button>
+
+
+        <p class="bottom-line">
+
+            These moments are little pieces
+            <br>
+
+            of our beautiful story. 🥹💜
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =========================
+           PAGE PROTECTION
+        ========================= */
+
+        if (
+            sessionStorage.getItem(
+                "instagramUnlocked"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "instagram.html";
+
+        }
+
+
+
+        /* =========================
+           PHOTO DATA
+        ========================= */
+
+        const cards =
+            document.querySelectorAll(
+                ".photo-card"
+            );
+
+        const counter =
+            document.getElementById(
+                "counter"
+            );
+
+        let currentIndex = 0;
+
+        const totalPhotos =
+            cards.length;
+
+
+
+        /* =========================
+           UPDATE CARDS
+        ========================= */
+
+        function updateCards() {
+
+            cards.forEach(
+                (card, index) => {
+
+                    card.classList.remove(
+                        "active",
+                        "behind-1",
+                        "behind-2"
+                    );
+
+
+                    if (
+                        index === currentIndex
+                    ) {
+
+                        card.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                    else if (
+                        index ===
+                        (currentIndex + 1)
+                        % totalPhotos
+                    ) {
+
+                        card.classList.add(
+                            "behind-1"
+                        );
+
+                    }
+
+                    else if (
+                        index ===
+                        (currentIndex + 2)
+                        % totalPhotos
+                    ) {
+
+                        card.classList.add(
+                            "behind-2"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            counter.innerHTML =
+                (currentIndex + 1)
+                + " / "
+                + totalPhotos
+                + " 💜";
+        }
+
+
+
+        /* =========================
+           NEXT PHOTO
+        ========================= */
+
+        function nextPhoto() {
+
+            currentIndex =
+                (currentIndex + 1)
+                % totalPhotos;
+
+            updateCards();
+        }
+
+
+
+        /* =========================
+           PREVIOUS PHOTO
+        ========================= */
+
+        function previousPhoto() {
+
+            currentIndex =
+                (
+                    currentIndex
+                    - 1
+                    + totalPhotos
+                )
+                % totalPhotos;
+
+            updateCards();
+        }
+
+
+
+        /* =========================
+           TOUCH SWIPE
+        ========================= */
+
+        let startX = 0;
+
+        let endX = 0;
+
+
+        const carousel =
+            document.getElementById(
+                "carousel"
+            );
+
+
+        carousel.addEventListener(
+            "touchstart",
+            function(event) {
+
+                startX =
+                    event.touches[0].clientX;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        carousel.addEventListener(
+            "touchend",
+            function(event) {
+
+                endX =
+                    event.changedTouches[0].clientX;
+
+                handleSwipe();
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+
+        function handleSwipe() {
+
+            const difference =
+                startX - endX;
+
+
+            if (
+                Math.abs(difference)
+                < 50
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                difference > 0
+            ) {
+
+                nextPhoto();
+
+            }
+
+            else {
+
+                previousPhoto();
+
+            }
+
+        }
+
+
+
+        /* =========================
+           MOUSE DRAG
+        ========================= */
+
+        let mouseStart = 0;
+
+        let mouseEnd = 0;
+
+        let dragging = false;
+
+
+        carousel.addEventListener(
+            "mousedown",
+            function(event) {
+
+                dragging = true;
+
+                mouseStart =
+                    event.clientX;
+
+            }
+        );
+
+
+        carousel.addEventListener(
+            "mouseup",
+            function(event) {
+
+                if (!dragging) {
+                    return;
+                }
+
+                dragging = false;
+
+                mouseEnd =
+                    event.clientX;
+
+
+                const difference =
+                    mouseStart - mouseEnd;
+
+
+                if (
+                    Math.abs(difference)
+                    < 50
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    difference > 0
+                ) {
+
+                    nextPhoto();
+
+                }
+
+                else {
+
+                    previousPhoto();
+
+                }
+
+            }
+        );
+
+
+        carousel.addEventListener(
+            "mouseleave",
+            function() {
+
+                dragging = false;
+
+            }
+        );
+
+
+
+        /* =========================
+           GO TO CUTE PAGE
+        ========================= */
+
+        function goToCute() {
+
+            sessionStorage.setItem(
+                "photosUnlocked",
+                "true"
+            );
+
+            window.location.href =
+                "cute.html";
+
+        }
+
+
+        /* Start */
+
+        updateCards();
+
+    </script>
+
+
+</body>
+
+</html>

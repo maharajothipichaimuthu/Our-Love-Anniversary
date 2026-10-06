@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Namma First Conversation 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="floating-hearts">
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+    </div>
+
+
+
+    <main class="memory-test">
+
+
+        <div class="heart">
+            📱
+        </div>
+
+
+        <p class="small-title">
+            NAMMA FIRST CONVERSATION 💜
+        </p>
+
+
+        <h1>
+            Namma Mudhala Enga Pesinom?
+        </h1>
+
+
+        <p class="test-intro">
+
+            Seri Babe...
+            idhu dhaan last memory test. 🥹💜
+
+            <br>
+
+            Namma rendu peroda first connection
+            enga start aachu nu nyabagam irukka?
+
+        </p>
+
+
+
+        <div class="question-box">
+
+
+            <div class="question">
+
+
+                <label>
+                    📱 Namma mudhala enga pesinom?
+                </label>
+
+
+                <input
+                    type="text"
+                    id="instagramAnswer"
+                    placeholder="Un answer type pannu..."
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <button onclick="checkInstagram()">
+
+                Next Babe 💜
+
+            </button>
+
+
+
+            <p id="message"></p>
+
+
+        </div>
+
+
+
+        <p class="bottom-text">
+
+            Sila chinna conversations dhaan
+            namma life-ah maathidum... 💜
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* Meet memory correct-ah irukkanum */
+
+        if (
+            sessionStorage.getItem(
+                "meetUnlocked"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "meet.html";
+
+        }
+
+
+
+        function checkInstagram() {
+
+
+            const answer =
+                document
+                .getElementById("instagramAnswer")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+            const message =
+                document
+                .getElementById("message");
+
+
+
+            if (answer === "instagram") {
+
+
+                message.innerHTML =
+                    "Correct Babe! 🥹💜<br>" +
+                    "Unakku namma story full-ah nyabagam irukku...";
+
+
+                message.className =
+                    "success";
+
+
+
+                sessionStorage.setItem(
+                    "instagramUnlocked",
+                    "true"
+                );
+
+
+
+                /*
+                    Success message
+                    3 seconds visible
+                */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "images.html";
+
+                    },
+                    3000
+                );
+
+
+            }
+
+            else {
+
+
+                message.innerHTML =
+                    "Hmm... adhu illa Babe 😌💜<br>" +
+                    "Namma first connection enga nu yosichu paaru...";
+
+
+                message.className =
+                    "error";
+
+
+            }
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

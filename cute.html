@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Unakaga... 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .cute-page {
+            min-height: 100vh;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .cute-page .heart {
+            font-size: 65px;
+            filter: drop-shadow(0 0 25px #d98cff);
+            animation: heartbeat 1.8s infinite;
+        }
+
+
+        .cute-page h1 {
+            font-size: 55px;
+            margin: 10px 0;
+            color: white;
+
+            text-shadow:
+                0 0 10px #d98cff,
+                0 0 25px #a855f7,
+                0 0 45px #7e22ce;
+        }
+
+
+        .cute-intro {
+            color: #e9d5ff;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 15px auto 40px;
+        }
+
+
+        .cute-intro small {
+            color: #d8b4fe;
+            font-size: 14px;
+        }
+
+
+        .names-container {
+            max-width: 950px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .name-card {
+            height: 150px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+
+            position: relative;
+
+            transition:
+                transform 0.7s;
+
+            transform-style: preserve-3d;
+        }
+
+
+        .name-card.revealed
+        .card-inner {
+            transform: rotateY(180deg);
+        }
+
+
+        .card-front,
+        .card-back {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            top: 0;
+            left: 0;
+
+            border-radius: 30px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+
+            border:
+                1px solid
+                rgba(216, 180, 254, 0.45);
+
+            box-shadow:
+                0 0 18px
+                rgba(192, 132, 252, 0.3),
+
+                inset 0 0 25px
+                rgba(216, 180, 254, 0.06);
+        }
+
+
+        .card-front {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(126, 34, 206, 0.35),
+                    rgba(49, 12, 78, 0.65)
+                );
+
+            color: white;
+        }
+
+
+        .front-heart {
+            font-size: 42px;
+
+            filter:
+                drop-shadow(
+                    0 0 15px #d98cff
+                );
+
+            margin-bottom: 8px;
+        }
+
+
+        .touch-text {
+            font-size: 14px;
+
+            color: #d8b4fe;
+
+            letter-spacing: 1px;
+        }
+
+
+        .card-back {
+            background:
+                linear-gradient(
+                    145deg,
+                    #7e22ce,
+                    #4c1d95,
+                    #581c87
+                );
+
+            transform: rotateY(180deg);
+
+            color: white;
+
+            box-shadow:
+                0 0 25px
+                rgba(216, 180, 254, 0.65),
+
+                0 0 55px
+                rgba(168, 85, 247, 0.35);
+        }
+
+
+        .revealed-heart {
+            font-size: 25px;
+
+            margin-bottom: 8px;
+
+            filter:
+                drop-shadow(
+                    0 0 10px white
+                );
+        }
+
+
+        .name-text {
+            font-size: 25px;
+            font-weight: bold;
+
+            text-shadow:
+                0 0 10px white,
+                0 0 20px #e9d5ff;
+        }
+
+
+        .name-card:hover
+        .card-front {
+            box-shadow:
+                0 0 28px
+                rgba(216, 180, 254, 0.65);
+        }
+
+
+        .next-button {
+            margin-top: 50px;
+
+            padding: 15px 38px;
+
+            border: none;
+
+            border-radius: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7e22ce,
+                    #a855f7,
+                    #7e22ce
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 18px
+                rgba(192, 132, 252, 0.6);
+
+            transition: 0.3s ease;
+        }
+
+
+        .next-button:hover {
+            transform: scale(1.06);
+
+            box-shadow:
+                0 0 30px
+                rgba(216, 180, 254, 0.8);
+        }
+
+
+        .bottom-line {
+            margin-top: 25px;
+
+            color: #c4b5fd;
+
+            font-size: 14px;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .cute-page {
+                padding: 45px 18px;
+            }
+
+
+            .cute-page h1 {
+                font-size: 40px;
+            }
+
+
+            .names-container {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 15px;
+            }
+
+
+            .name-card {
+                height: 140px;
+            }
+
+
+            .name-text {
+                font-size: 21px;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .names-container {
+                grid-template-columns: 1fr;
+
+                max-width: 320px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="floating-hearts">
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+    </div>
+
+
+    <main class="cute-page">
+
+
+        <div class="heart">
+            💜
+        </div>
+
+
+        <p class="small-title">
+            JUST FOR YOU 💜
+        </p>
+
+
+        <h1>
+            Unakaga... 💜
+        </h1>
+
+
+        <p class="cute-intro">
+
+            Daily neethane Bavahh ena konjara...<br>
+
+            Iniku na konjare, reveal pannu Mailuu 💜🥹
+
+            <br>
+
+            <small>
+                Touch each heart to reveal... 💜
+            </small>
+
+        </p>
+
+
+        <div class="names-container">
+
+
+            <!-- 1 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Mama
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Bavahh
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Ammu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Darling
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Babe
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 6 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Ulagamey
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 7 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            En Purusha
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 8 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Pavunu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 9 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Vairom
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Gunduu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 11 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Azhagu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 12 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Mailu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 13 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Sexy
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 14 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Pattu
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 15 -->
+
+            <div
+                class="name-card"
+                onclick="reveal(this)"
+            >
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="front-heart">
+                            💜
+                        </div>
+
+                        <div class="touch-text">
+                            TOUCH ME
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div class="revealed-heart">
+                            💜
+                        </div>
+
+                        <div class="name-text">
+                            Psycho
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="next-button"
+            onclick="goNext()"
+        >
+            Next Babe 💜
+        </button>
+
+
+        <p class="bottom-line">
+
+            So many names...<br>
+
+            but only one person in my heart. 🥹💜
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* Photos page-la irundhu dhaan inga vara mudiyum */
+
+        if (
+            sessionStorage.getItem(
+                "photosUnlocked"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "images.html";
+
+        }
+
+
+
+        function reveal(card) {
+
+            card.classList.toggle(
+                "revealed"
+            );
+
+        }
+
+
+
+        function goNext() {
+
+            sessionStorage.setItem(
+                "cuteUnlocked",
+                "true"
+            );
+
+            window.location.href =
+                "wishes.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

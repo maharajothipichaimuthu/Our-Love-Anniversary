@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Namma Special Date 💜</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="floating-hearts">
+
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+        <span>💜</span>
+
+    </div>
+
+
+
+    <main class="memory-test">
+
+
+        <div class="heart">
+            💜
+        </div>
+
+
+        <p class="small-title">
+            NAMMA CHINNA MEMORY 💜
+        </p>
+
+
+        <h1>
+            Namma Special Day Nyabagam Irukka?
+        </h1>
+
+
+        <p class="test-intro">
+
+            Namma story start aana
+            andha special date enna nu
+            sollu paapom... 🥹💜
+
+            <br>
+
+            Correct-ah sonna dhaan
+            next memory-ku pogalaam. 💜
+
+        </p>
+
+
+
+        <div class="question-box">
+
+
+            <div class="question">
+
+
+                <label>
+                    💜 Namma story start aana date enna?
+                </label>
+
+
+                <input
+                    type="text"
+                    id="dateAnswer"
+                    placeholder="DD/MM/YYYY"
+                    autocomplete="off"
+                >
+
+
+            </div>
+
+
+
+            <button onclick="checkDate()">
+
+                Next Babe 💜
+
+            </button>
+
+
+
+            <p id="message"></p>
+
+
+        </div>
+
+
+
+        <p class="bottom-text">
+
+            Oru date...
+            Oru beginning...
+            Namma rendu peroda story. 💜
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        function checkDate() {
+
+
+            const answer =
+                document
+                .getElementById("dateAnswer")
+                .value
+                .trim();
+
+
+            const message =
+                document
+                .getElementById("message");
+
+
+
+            if (answer === "08/10/2023") {
+
+
+                message.innerHTML =
+                    "Awww... nyabagam irukku! 🥹💜<br>" +
+                    "Namma next memory-ku polaam...";
+
+
+                message.className =
+                    "success";
+
+
+
+                sessionStorage.setItem(
+                    "dateUnlocked",
+                    "true"
+                );
+
+
+
+                /*
+                    Message 3 seconds
+                    visible-ah irukkum
+                */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "meet.html";
+
+                    },
+                    3000
+                );
+
+
+            }
+
+            else {
+
+
+                message.innerHTML =
+                    "Aiyo... thappa irukku 😌💜<br>" +
+                    "Konjam nalla yosichu sollu Babe...";
+
+
+                message.className =
+                    "error";
+
+
+            }
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
